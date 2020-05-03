@@ -104,6 +104,15 @@
         };
       }
       {
+        name = "async";
+        src = pkgs.fetchFromGitHub {
+          owner = "mafredri";
+          repo = "zsh-async";
+          rev = "v1.8.0";
+          sha256 = "02p4ll1f3sibjxbywx3a7ql758ih27vd9sx4nl9j0i64hwkdqfrb";
+        };
+      }
+      {
         # will source zsh-autosuggestions.plugin.zsh
         name = "pure";
         src = pkgs.fetchFromGitHub {
