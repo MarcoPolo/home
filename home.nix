@@ -13,7 +13,7 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.03";
-  home.packages = [ ];
+  home.packages = with pkgs; [ zola ];
 
   # For pure zsh
   # environment.pathsToLink = [ "/share/zsh" ];
