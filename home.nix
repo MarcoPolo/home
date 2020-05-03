@@ -13,6 +13,10 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.03";
+  home.packages = [ ];
+
+  # For pure zsh
+  # environment.pathsToLink = [ "/share/zsh" ];
 
   programs.git = {
     enable = true;
@@ -48,4 +52,50 @@
       };
     };
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autocd = true;
+    defaultKeymap = "viins";
+    initExtra = ''
+      # Edit command in vim
+      autoload -U edit-command-line
+      zle -N edit-command-line
+      bindkey -M vicmd v edit-command-line
+
+
+      bindkey '^R' history-incremental-search-backward
+
+      # Better command not found
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
+      # Setup nix
+      . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
+      # export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH:$HOME/localnix
+    '';
+    plugins = [
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.4.0";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "pure";
+        src = pkgs.fetchFromGitHub {
+          owner = "sindresorhus";
+          repo = "pure";
+          rev = "v1.12.0";
+          sha256 = "1h04z7rxmca75sxdfjgmiyf1b5z2byfn6k4srls211l0wnva2r5y";
+        };
+      }
+    ];
+  };
+
 }
