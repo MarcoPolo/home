@@ -83,7 +83,10 @@
       bindkey '^R' history-incremental-search-backward
 
       # Setup nix
-      . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
+      ${if builtins.currentSystem == "x86_64-darwin" then ''
+        . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
+      '' else
+        ""}
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
