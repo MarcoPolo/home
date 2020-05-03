@@ -53,6 +53,21 @@
     };
   };
 
+  programs.z-lua = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.broot = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -67,12 +82,12 @@
 
       bindkey '^R' history-incremental-search-backward
 
+      # Setup nix
+      . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
+
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
 
-      # Setup nix
-      . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
-      # export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH:$HOME/localnix
     '';
     plugins = [
       {
