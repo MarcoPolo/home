@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   disabledModules = [ (<home-manager> + "/modules/programs/vscode.nix") ];
@@ -127,6 +127,19 @@
       }
     ];
   };
+
+  # home.file.vscode-settings {
+  #   source = ./vscode/settings/settings.json;
+  #   target = "Library/Application Support/Code/User/settings.json";
+  # }
+
+  home.activation.linkVSCodeSettings =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
+          ${
+            builtins.toPath ./vscode/settings/settings.json
+          } "$HOME/Library/Application Support/Code/User/settings.json"
+    '';
 
   # Not sure how I want to do this...
   # I want vs code to still be able to edit it's own config. Maybe just a symlink would be better?
