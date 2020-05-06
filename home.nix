@@ -140,6 +140,13 @@
             builtins.toPath ./vscode/settings/settings.json
           } "$HOME/Library/Application Support/Code/User/settings.json"
     '';
+  home.activation.linkVSCodeKeyBindings =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
+          ${
+            builtins.toPath ./vscode/settings/keybindings.json
+          } "$HOME/Library/Application Support/Code/User/keybindings.json"
+    '';
 
   # Not sure how I want to do this...
   # I want vs code to still be able to edit it's own config. Maybe just a symlink would be better?
