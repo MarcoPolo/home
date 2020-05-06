@@ -1,0 +1,106 @@
+// Place your key bindings in this file to override the defaults
+[
+  // {
+  //     "key": "Escape",
+  //     "command": "vscode-neovim.escape",
+  //     "when": "editorFocus && neovim.mode != normal"
+  // },
+  {
+    "key": "ctrl+cmd+b",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  {
+    "key": "cmd+alt+b",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "cmd+k k",
+    "command": "workbench.action.terminal.focus",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k k",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.terminal.new",
+    // "command": "clojure",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+shift+[",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+shift+]",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+e n",
+    "command": "editor.action.marker.next",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+f8",
+    "command": "-editor.action.marker.next",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+e p",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.showDefinitionPreviewHover",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+    // "when": "editorTextFocus && neovim.mode != 'insert'"
+  },
+  {
+    "key": "cmd+'",
+    "command": "calva.evalCurrentFormInREPLWindow"
+  },
+  {
+    "key": "shift+cmd+'",
+    "command": "calva.loadFile"
+  },
+  {
+    "key": "escape",
+    "command": "-calva.clearInlineResults"
+  },
+  {
+    "key": "cmd+escape",
+    "command": "calva.clearInlineResults",
+    "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && !hasOtherSuggestions && !suggestWidgetVisible && editorLangId == 'clojure'"
+  },
+  // {
+  //     "command": "vscode-neovim.send",
+  //     "key": "alt+tab",
+  //     "when": "editorTextFocus && neovim.mode != 'insert'",
+  //     "args": "<cmd-Tab>"
+  // },
+  // {
+  //     "key": "cmd+/",
+  //     "command": "vscode-neovim.send",
+  //     "when": "editorTextFocus && neovim.mode != insert",
+  //     "args": "<C-/>"
+  // },
+]
