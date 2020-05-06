@@ -1,0 +1,1 @@
+code --list-extensions | awk '{print "  \"" $1 "\""}' > extensions.meta

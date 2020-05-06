@@ -128,13 +128,10 @@
     ];
   };
 
-  # home.file.vscode-settings {
-  #   source = ./vscode/settings/settings.json;
-  #   target = "Library/Application Support/Code/User/settings.json";
-  # }
-
-  home.activation.linkVSCodeSettings =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  # On one hand it would be nice to have these managed by nix/hm. But on the
+  # other, letting vs code manage it's own config is very useful! I got stuff to do
+  home.activation = {
+    linkVSCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
             builtins.toPath ./vscode/settings/settings.json
@@ -147,131 +144,12 @@
             builtins.toPath ./vscode/settings/keybindings.json
           } "$HOME/Library/Application Support/Code/User/keybindings.json"
     '';
-
-  # Not sure how I want to do this...
-  # I want vs code to still be able to edit it's own config. Maybe just a symlink would be better?
-  programs.vscode = {
-    enable = false;
-    # Don't let home-manager manage vscode
-    package = null;
-    pname = "vscode";
-    # userSettings = {
-    #   "C_Cpp.updateChannel" = "Insiders";
-    #   "[javascript]" = {
-    #     "editor.defaultFormatter" = "vscode.typescript-language-features";
-    #   };
-    #   "[markdown]" = {
-    #     "editor.quickSuggestions" = false;
-    #     "editor.rulers" = [ 80 ];
-    #     "editor.wordWrap" = "on";
-    #     "rewrap.autoWrap.enabled" = true;
-    #   };
-    #   "[nix]" = { "editor.defaultFormatter" = "brettm12345.nixfmt-vscode"; };
-    #   "[typescript]" = {
-    #     "editor.defaultFormatter" = "vscode.typescript-language-features";
-    #   };
-    #   "[typescriptreact]" = {
-    #     "editor.defaultFormatter" = "vscode.typescript-language-features";
-    #   };
-    #   "calva.paredit.defaultKeyMap" = "original";
-    #   "clock.alignment" = "Right";
-    #   "clock.iconName" = "none";
-    #   "editor.minimap.enabled" = false;
-    #   "editor.tabSize" = 2;
-    #   "eslint.format.enable" = true;
-    #   "go.formatTool" = "goimports";
-    #   "go.useLanguageServer" = true;
-    #   "nightswitch.autoSwitch" = true;
-    #   "nightswitch.location" = "34.052235, -118.243683";
-    #   "nightswitch.themeDay" = "Material Theme Lighter";
-    #   "nightswitch.themeNight" =
-    #     "Community Material Theme Palenight High Contrast";
-    #   "nixfmt.path" = "/Users/marcomunizaga/.nix-profile/bin/nixfmt";
-    #   "rust.clippy_preference" = "on";
-    #   "terminal.integrated.shell.osx" = "/bin/zsh";
-    #   "vim.normalModeKeyBindingsNonRecursive" = [
-    #     {
-    #       after = [ ];
-    #       before = [ "u" ];
-    #       commands = [{
-    #         args = [ ];
-    #         command = "undo";
-    #       }];
-    #     }
-    #     {
-    #       after = [ "cmd+'" ];
-    #       before = [[ "c" "p" "p" ]];
-    #     }
-    #     {
-    #       after = [ ];
-    #       before = [ "<C-r>" ];
-    #       commands = [{
-    #         args = [ ];
-    #         command = "redo";
-    #       }];
-    #     }
-    #   ];
-    #   "vscode-neovim.neovimPath" = "/usr/local/bin/nvim";
-    #   # for neovim
-    #   # "editor.scrollBeyondLastLine" = false;
-    #   "vsonline.authentication.accountProvider" = "Microsoft";
-    #   "window.zoomLevel" = 1;
-    #   "workbench.activityBar.visible" = true;
-    #   "workbench.colorTheme" = "Material Theme Lighter";
-    #   "workbench.statusBar.visible" = true;
-    # };
-    userSettingsJSONFilePath = ./vscode/settings/settings.json;
-    userKeybindingsJSONFilePath = ./vscode/settings/keybindings.json;
-    # extensions = [
-    #   "aeschli.vscode-css-formatter"
-    #   "angelo-breuer.clock"
-    #   "asvetliakov.vscode-neovim"
-    #   "ban.spellright"
-    #   "bbenoist.Nix"
-    #   "betterthantomorrow.calva"
-    #   "borkdude.clj-kondo"
-    #   "brettm12345.nixfmt-vscode"
-    #   "bungcip.better-toml"
-    #   "clptn.code-paredit"
-    #   "CoenraadS.bracket-pair-colorizer-2"
-    #   "dbaeumer.vscode-eslint"
-    #   "eamodio.gitlens"
-    #   "EditorConfig.EditorConfig"
-    #   "Equinusocio.vsc-community-material-theme"
-    #   "Equinusocio.vsc-material-theme"
-    #   "equinusocio.vsc-material-theme-icons"
-    #   "gharveymn.nightswitch-lite"
-    #   "Hyzeta.vscode-theme-github-light"
-    #   "jdinhlife.gruvbox"
-    #   "kanitw.vega-vscode"
-    #   "lkytal.pomodoro"
-    #   "mitaki28.vscode-clang"
-    #   "mrmlnc.vscode-scss"
-    #   "ms-azuretools.vscode-docker"
-    #   "ms-python.python"
-    #   "ms-vscode-remote.remote-containers"
-    #   "ms-vscode-remote.remote-ssh"
-    #   "ms-vscode-remote.remote-ssh-edit"
-    #   "ms-vscode.cmake-tools"
-    #   "ms-vscode.cpptools"
-    #   "ms-vscode.Go"
-    #   "ms-vsliveshare.vsliveshare"
-    #   "ms-vsonline.vsonline"
-    #   "Orta.vscode-jest"
-    #   "pedrorgirardi.vscode-cljfmt"
-    #   "RandomFractalsInc.vscode-vega-viewer"
-    #   "rust-lang.rust"
-    #   "Shan.code-settings-sync"
-    #   "shardulm94.trailing-spaces"
-    #   "sibiraj-s.vscode-scss-formatter"
-    #   "stkb.rewrap"
-    #   "syler.sass-indented"
-    #   "sysoev.vscode-open-in-github"
-    #   "vscodevim.vim"
-    #   "vsls-contrib.codetour"
-    #   "vsls-contrib.gistfs"
-    #   "xaver.clang-format"
-    # ];
-
+    # Really slow
+    # installVSCodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    #   $DRY_RUN_CMD cat \
+    #       ${
+    #         builtins.toPath ./vscode/extensions.meta
+    #       } | xargs -I{} code --install-extension {}
+    # '';
   };
 }
