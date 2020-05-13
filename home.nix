@@ -137,8 +137,7 @@
             builtins.toPath ./vscode/settings/settings.json
           } "$HOME/Library/Application Support/Code/User/settings.json"
     '';
-  home.activation.linkVSCodeKeyBindings =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
             builtins.toPath ./vscode/settings/keybindings.json
@@ -152,4 +151,11 @@
     #       } | xargs -I{} code --install-extension {}
     # '';
   };
+
+  programs.neomutt = {
+    enable = true;
+    vimKeys = true;
+  };
+
+  programs.neovim = { enable = true; };
 }
