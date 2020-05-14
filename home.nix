@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
-
-{
+let
+  secretsPath =
+    /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
+  certPath =
+    "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
+in {
   disabledModules = [ (<home-manager> + "/modules/programs/vscode.nix") ];
   imports = [ ./modules/vscode.nix ];
   # Let Home Manager install and manage itself.
@@ -18,8 +22,15 @@
   home.packages = with pkgs; [ zola ];
   nixpkgs.config.allowUnfree = true;
 
-  # For pure zsh
-  # environment.pathsToLink = [ "/share/zsh" ];
+  home.sessionVariables = { EDITOR = "nvim"; };
+
+  home.file = if pkgs.stdenv.hostPlatform.isDarwin then {
+    nix-conf = {
+      source = ./mac-nix.conf;
+      target = ".config/nix/nix.conf";
+    };
+  } else
+    { };
 
   programs.git = {
     enable = true;
@@ -155,7 +166,18 @@
   programs.neomutt = {
     enable = true;
     vimKeys = true;
+    editor = "nvim";
+    sidebar = { enable = true; };
   };
+  programs.mbsync.enable = true;
+
+  accounts.email.maildirBasePath = "Mail";
+  accounts.email.certificatesFile = certPath;
+
+  accounts.email.accounts.marcopolo = if (builtins.pathExists secretsPath) then
+    (import secretsPath).accounts.email.accounts.marcopolo
+  else
+    { };
 
   programs.neovim = { enable = true; };
 }
