@@ -139,7 +139,7 @@ in {
 
   # On one hand it would be nice to have these managed by nix/hm. But on the
   # other, letting vs code manage it's own config is very useful! I got stuff to do
-  home.activation = {
+  home.activation = if (builtins.currentSystem == "x86_64-darwin") then {
     linkVSCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
@@ -159,7 +159,7 @@ in {
     #         builtins.toPath ./vscode/extensions.meta
     #       } | xargs -I{} code --install-extension {}
     # '';
-  };
+  } else {};
 
   # programs.neomutt = {
   #   enable = true;
