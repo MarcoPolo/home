@@ -84,5 +84,6 @@
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Solarized Light",
   "workbench.statusBar.visible": true,
-  "vsonline.accountProvider": "Microsoft"
+  "vsonline.accountProvider": "Microsoft",
+  "cmake.configureOnOpen": false
 }
