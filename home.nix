@@ -163,21 +163,21 @@ in {
     # '';
   };
 
-  programs.neomutt = {
-    enable = true;
-    vimKeys = true;
-    editor = "nvim";
-    sidebar = { enable = true; };
-  };
-  programs.mbsync.enable = true;
+  # programs.neomutt = {
+  #   enable = true;
+  #   vimKeys = true;
+  #   editor = "nvim";
+  #   sidebar = { enable = true; };
+  # };
+  # programs.mbsync.enable = true;
 
-  accounts.email.maildirBasePath = "Mail";
-  accounts.email.certificatesFile = certPath;
+  # accounts.email.maildirBasePath = "Mail";
+  # accounts.email.certificatesFile = certPath;
 
-  accounts.email.accounts.marcopolo = if (builtins.pathExists secretsPath) then
-    (import secretsPath).accounts.email.accounts.marcopolo
-  else
-    { };
+  # accounts.email.accounts.marcopolo = if (builtins.pathExists secretsPath) then
+  #   (import secretsPath).accounts.email.accounts.marcopolo
+  # else
+  #   { };
 
   programs.neovim = { enable = true; };
 }
