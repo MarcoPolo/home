@@ -5,8 +5,6 @@ let
   certPath =
     "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
 in {
-  disabledModules = [ (<home-manager> + "/modules/programs/vscode.nix") ];
-  imports = [ ./modules/vscode.nix ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
