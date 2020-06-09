@@ -105,7 +105,7 @@ in {
 
       # Setup nix
       ${if builtins.currentSystem == "x86_64-darwin" then ''
-        . /Users/marcomunizaga/.nix-profile/etc/profile.d/nix.sh
+        . $HOME/.nix-profile/etc/profile.d/nix.sh
       '' else
         ""}
 
@@ -163,13 +163,13 @@ in {
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
             builtins.toPath ./vscode/settings/settings.json
-          } "$HOME/Library/Application Support/Code/User/settings.json"
+          } "$HOME/Library/Application Support/Code/User/settings.json" || true
     '';
     linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
             builtins.toPath ./vscode/settings/keybindings.json
-          } "$HOME/Library/Application Support/Code/User/keybindings.json"
+          } "$HOME/Library/Application Support/Code/User/keybindings.json" || true
     '';
     # Really slow
     # installVSCodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
