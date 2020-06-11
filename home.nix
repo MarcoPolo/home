@@ -17,7 +17,7 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.03";
-  home.packages = with pkgs; [ zola ];
+  home.packages = with pkgs; [ zola lorri ];
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = { EDITOR = "nvim"; };
@@ -27,8 +27,17 @@ in {
       source = ./mac-nix.conf;
       target = ".config/nix/nix.conf";
     };
+    config = {
+      source = ./mac-nixconfig.nix;
+      target = ".config/nixpkgs/config.nix";
+    };
   } else
     { };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.git = {
     enable = true;
@@ -125,7 +134,17 @@ in {
         };
       }
       {
-        # will source zsh-autosuggestions.plugin.zsh
+        name = "history";
+        file = "lib/history.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "ohmyzsh";
+          repo = "ohmyzsh";
+          rev = "b721053c87b4662c65452117a8db35af0154a29d";
+          sha256 =
+            "sha256:02y6mhvsxamsvfx2bcdrfbbl7g8v1cq8qycjbffn4w3d6aprq5c6";
+        };
+      }
+      {
         name = "pure";
         src = pkgs.fetchFromGitHub {
           owner = "sindresorhus";
@@ -159,7 +178,8 @@ in {
     #         builtins.toPath ./vscode/extensions.meta
     #       } | xargs -I{} code --install-extension {}
     # '';
-  } else {};
+  } else
+    { };
 
   # programs.neomutt = {
   #   enable = true;
