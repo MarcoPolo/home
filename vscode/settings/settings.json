@@ -82,7 +82,7 @@
   "vsonline.authentication.accountProvider": "Microsoft",
   "window.zoomLevel": 1,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
+  "workbench.colorTheme": "Solarized Light",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
   "cmake.configureOnOpen": false,

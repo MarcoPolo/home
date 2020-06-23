@@ -111,8 +111,8 @@ in {
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-
     '';
+    shellAliases = { vim = "nvim"; };
     plugins = [
       {
         # will source zsh-autosuggestions.plugin.zsh
@@ -197,5 +197,50 @@ in {
   # else
   #   { };
 
-  programs.neovim = { enable = true; };
+  programs.neovim = {
+    enable = true;
+    configure = {
+      customRC = ''
+        colorscheme seoul256
+      '';
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        # loaded on launch
+        start = [
+          coc-nvim
+          coc-rust-analyzer
+          # coc-tsserver
+          # coc-json
+          # coc-pairs
+          fugitive
+          vim-easymotion
+          delimitMate
+          vim-gitgutter
+          ale
+          # ctrlp-smarttabs
+          # vim-misc
+          # vim-notes
+
+          sky-color-clock-vim
+
+          lightline-vim
+          seoul256-vim
+          ctrlp-vim
+          vim-surround
+          vim-eunuch
+          vim-fugitive
+          vim-abolish
+          vim-repeat
+          nerdcommenter
+          # Rust
+          rust-vim
+
+          # "Plug lambdalisue/suda.vim
+
+        ];
+        # manually loadable by calling `:packadd $plugin-name`
+        opt = [ ];
+      };
+    };
+
+  };
 }
