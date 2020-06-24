@@ -215,6 +215,7 @@ in {
           vim-easymotion
           delimitMate
           vim-gitgutter
+          vim-nix
           ale
           # ctrlp-smarttabs
           # vim-misc
