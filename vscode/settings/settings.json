@@ -81,11 +81,14 @@
   "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
   "vsonline.authentication.accountProvider": "Microsoft",
   "window.zoomLevel": 1,
-  "workbench.activityBar.visible": true,
+  "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Solarized Light",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
   "cmake.configureOnOpen": false,
   "python.dataScience.askForKernelRestart": false,
-  "codespaces.accountProvider": "Microsoft"
+  "codespaces.accountProvider": "Microsoft",
+  "[rust]": {
+    "editor.defaultFormatter": "matklad.rust-analyzer"
+  }
 }

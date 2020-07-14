@@ -201,18 +201,31 @@ in {
     enable = true;
     configure = {
       customRC = ''
+        let mapleader = ","
         colorscheme seoul256
+        nnoremap <F6> :w<CR>
+        nnoremap <F7> :Commentary<CR>
+        inoremap <silent><expr> <TAB>
+              \ pumvisible() ? "\<C-n>" :
+              \ <SID>check_back_space() ? "\<TAB>" :
+              \ coc#refresh()
+        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+        nmap <leader>rn <Plug>(coc-rename)
       '';
       packages.myVimPackage = with pkgs.vimPlugins; {
         # loaded on launch
         start = [
+          vim-plug
           coc-nvim
           coc-rust-analyzer
+          # coc-rename
           # coc-tsserver
           # coc-json
           # coc-pairs
           fugitive
           vim-easymotion
+          vim-commentary
           delimitMate
           vim-gitgutter
           vim-nix
@@ -231,7 +244,7 @@ in {
           vim-fugitive
           vim-abolish
           vim-repeat
-          nerdcommenter
+          # nerdcommenter
           # Rust
           rust-vim
 
@@ -243,5 +256,29 @@ in {
       };
     };
 
+  };
+
+  programs.ssh = {
+    enable = true;
+
+    matchBlocks = {
+      rusty = { hostname = "rusty.marcopolo.io"; };
+      "pi4" = {
+        hostname = "pi4.local";
+        user = "marco";
+      };
+      "local-nixos" = {
+        hostname = "10.211.55.7";
+        user = "marco";
+      };
+      "rex" = {
+        hostname = "rex.local";
+        user = "marco";
+      };
+      "dex" = {
+        hostname = "dex.local";
+        user = "marco";
+      };
+    };
   };
 }
