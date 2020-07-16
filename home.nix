@@ -4,6 +4,7 @@ let
     /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
   certPath =
     "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
+  nixCfg = import ./config.nix;
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -95,6 +96,12 @@ in {
     autocd = true;
     defaultKeymap = "viins";
     initExtra = ''
+      # Any extra work stuff
+      ${if builtins.hasAttr "extraWorkZsh" nixCfg then
+        nixCfg.extraWorkZsh
+      else
+        ""}
+
       # Edit command in vim
       autoload -U edit-command-line
       zle -N edit-command-line
