@@ -5,7 +5,8 @@ let
     /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
   certPath =
     "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
-  nixCfg = import ./config.nix;
+  nixCfg =
+    if (builtins.pathExists ./config.nix) then import ./config.nix else { };
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
