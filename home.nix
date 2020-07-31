@@ -1,5 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
+  pkgs = import ((import ./nix/sources.nix).nixpkgs) { inherit config; };
   secretsPath =
     /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
   certPath =
@@ -72,6 +73,7 @@ in {
         interactive = "auto";
         status = "auto";
       };
+      pull = { ff = "only"; };
     };
   };
 
@@ -225,7 +227,7 @@ in {
         start = [
           vim-plug
           coc-nvim
-          coc-rust-analyzer
+          # coc-rust-analyzer
           # coc-rename
           # coc-tsserver
           # coc-json
