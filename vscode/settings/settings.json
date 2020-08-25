@@ -7,14 +7,12 @@
   },
   "[markdown]": {
     "editor.quickSuggestions": false,
-    "editor.rulers": [
-      80
-    ],
+    "editor.rulers": [80],
     "editor.wordWrap": "on",
     "rewrap.autoWrap.enabled": true
   },
   "[nix]": {
-    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
   },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -43,9 +41,7 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "after": [],
-      "before": [
-        "u"
-      ],
+      "before": ["u"],
       "commands": [
         {
           "args": [],
@@ -54,22 +50,12 @@
       ]
     },
     {
-      "after": [
-        "cmd+'"
-      ],
-      "before": [
-        [
-          "c",
-          "p",
-          "p"
-        ]
-      ]
+      "after": ["cmd+'"],
+      "before": [["c", "p", "p"]]
     },
     {
       "after": [],
-      "before": [
-        "<C-r>"
-      ],
+      "before": ["<C-r>"],
       "commands": [
         {
           "args": [],
@@ -80,9 +66,9 @@
   ],
   "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
   "vsonline.authentication.accountProvider": "Microsoft",
-  "window.zoomLevel": 1,
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Solarized Light",
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
   "cmake.configureOnOpen": false,
@@ -90,5 +76,15 @@
   "codespaces.accountProvider": "Microsoft",
   "[rust]": {
     "editor.defaultFormatter": "matklad.rust-analyzer"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   }
 }
