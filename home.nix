@@ -110,9 +110,6 @@ in {
       zle -N edit-command-line
       bindkey -M vicmd v edit-command-line
 
-
-      bindkey '^R' history-incremental-search-backward
-
       # Setup nix
       ${if builtins.currentSystem == "x86_64-darwin" then ''
         . $HOME/.nix-profile/etc/profile.d/nix.sh
