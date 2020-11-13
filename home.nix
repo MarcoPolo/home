@@ -1,14 +1,14 @@
 { config, lib, ... }:
 let
-  pkgs = import ./nix/nixpkgs.nix { config = config // { allowUnfree = true; }; };
+  pkgs =
+    import ./nix/nixpkgs.nix { config = config // { allowUnfree = true; }; };
   secretsPath =
     /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
   certPath =
     "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
   nixCfg =
-    if (builtins.pathExists ./config.nix) then import ./config.nix else {};
-in
-{
+    if (builtins.pathExists ./config.nix) then import ./config.nix else { };
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -36,7 +36,7 @@ in
       target = ".config/nixpkgs/config.nix";
     };
   } else
-    {};
+    { };
 
   programs.direnv = {
     enable = true;
@@ -102,9 +102,9 @@ in
     initExtra = ''
       # Any extra work stuff
       ${if builtins.hasAttr "extraWorkZsh" nixCfg then
-      nixCfg.extraWorkZsh
-    else
-      ""}
+        nixCfg.extraWorkZsh
+      else
+        ""}
 
       # Edit command in vim
       autoload -U edit-command-line
@@ -113,9 +113,9 @@ in
 
       # Setup nix
       ${if builtins.currentSystem == "x86_64-darwin" then ''
-      . $HOME/.nix-profile/etc/profile.d/nix.sh
-    '' else
-      ""}
+        . $HOME/.nix-profile/etc/profile.d/nix.sh
+      '' else
+        ""}
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
@@ -170,8 +170,8 @@ in
     linkVSCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
-    builtins.toPath ./vscode/settings/settings.json
-    } "$HOME/Library/Application Support/Code/User/settings.json" || true
+            builtins.toPath ./vscode/settings/settings.json
+          } "$HOME/Library/Application Support/Code/User/settings.json" || true
     '';
     linkVSCodeRemoteExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
@@ -180,8 +180,8 @@ in
     linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ln -s $VERBOSE_ARG \
           ${
-    builtins.toPath ./vscode/settings/keybindings.json
-    } "$HOME/Library/Application Support/Code/User/keybindings.json" || true
+            builtins.toPath ./vscode/settings/keybindings.json
+          } "$HOME/Library/Application Support/Code/User/keybindings.json" || true
     '';
     # Really slow
     # installVSCodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -191,7 +191,7 @@ in
     #       } | xargs -I{} code --install-extension {}
     # '';
   } else
-    {};
+    { };
 
   # programs.neomutt = {
   #   enable = true;
@@ -284,7 +284,8 @@ in
         user = "marco";
       };
       "rex" = {
-        hostname = "rex.local";
+        # hostname = "rex.local";
+        hostname = "192.168.125.2";
         user = "marco";
       };
       "dex" = {

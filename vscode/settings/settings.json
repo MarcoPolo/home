@@ -12,7 +12,7 @@
     "rewrap.autoWrap.enabled": true
   },
   "[nix]": {
-    "editor.defaultFormatter": "jnoortheen.nix-ide"
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -66,9 +66,9 @@
   ],
   "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
   "vsonline.authentication.accountProvider": "Microsoft",
-  "window.zoomLevel": 0,
-  "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Solarized Light",
+  "window.zoomLevel": 1,
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
   "cmake.configureOnOpen": false,
@@ -91,5 +91,11 @@
     "editor.defaultFormatter": "betterthantomorrow.calva",
     "editor.formatOnSave": true
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "nightswitch.themeNight": "Community Material Theme Palenight High Contrast",
+  "nightswitch.themeDay": "Solarized Light",
+  "[haskell]": {
+    "editor.defaultFormatter": "haskell.haskell"
+  },
+  "workbench.editor.showTabs": false
 }
