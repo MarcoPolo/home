@@ -9,6 +9,7 @@ let
   nixCfg =
     if (builtins.pathExists ./config.nix) then import ./config.nix else { };
 in {
+  imports = [./git-aliases.nix ./common.nix]
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
