@@ -1,4 +1,5 @@
 { ... }: {
+  imports = [ ./marcpolo-github.nix ./common.nix ];
   programs.ssh = {
     enable = true;
 
