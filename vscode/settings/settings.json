@@ -14,6 +14,9 @@
   "[nix]": {
     "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
   },
+  "[terraform]": {
+    "editor.formatOnSave": true
+  },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
@@ -67,12 +70,11 @@
   "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
   "vsonline.authentication.accountProvider": "Microsoft",
   "window.zoomLevel": 1,
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Solarized Light",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
-  "cmake.configureOnOpen": false,
-  "python.dataScience.askForKernelRestart": false,
+"cmake.configureOnOpen": false,
   "codespaces.accountProvider": "GitHub",
   "[rust]": {
     "editor.defaultFormatter": "matklad.rust-analyzer"
@@ -85,7 +87,7 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
-    }
+    },
   },
   "[clojure]": {
     "editor.defaultFormatter": "betterthantomorrow.calva",
@@ -97,5 +99,22 @@
   "[haskell]": {
     "editor.defaultFormatter": "haskell.haskell"
   },
-  "workbench.editor.showTabs": false
+  "stripe-internal.doctor.enabled": false,
+  "stripe-internal.doctor.localDiagnosis.enabled": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "go.languageServerFlags": [
+    "-rpc.trace"
+  ],
+"window.titleBarStyle": "custom",
+"jupyter.askForKernelRestart": false,
+"terraform.languageServer": {
+  "external": true,
+  "args": [
+    "serve"
+  ],
+  "maxNumberOfProblems": 100,
+  "trace.server": "off"
+},
+"editor.accessibilitySupport": "off",
 }
