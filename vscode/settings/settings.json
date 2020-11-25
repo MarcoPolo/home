@@ -122,14 +122,6 @@
   ],
   "window.titleBarStyle": "custom",
   "jupyter.askForKernelRestart": false,
-  "terraform.languageServer": {
-    "external": true,
-    "args": [
-      "serve"
-    ],
-    "maxNumberOfProblems": 100,
-    "trace.server": "off"
-  },
   "editor.accessibilitySupport": "off",
   "workbench.editor.showTabs": true
 }
