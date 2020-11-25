@@ -7,12 +7,14 @@
   },
   "[markdown]": {
     "editor.quickSuggestions": false,
-    "editor.rulers": [80],
+    "editor.rulers": [
+      80
+    ],
     "editor.wordWrap": "on",
     "rewrap.autoWrap.enabled": true
   },
   "[nix]": {
-    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
   },
   "[terraform]": {
     "editor.formatOnSave": true
@@ -44,7 +46,9 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "after": [],
-      "before": ["u"],
+      "before": [
+        "u"
+      ],
       "commands": [
         {
           "args": [],
@@ -53,12 +57,22 @@
       ]
     },
     {
-      "after": ["cmd+'"],
-      "before": [["c", "p", "p"]]
+      "after": [
+        "cmd+'"
+      ],
+      "before": [
+        [
+          "c",
+          "p",
+          "p"
+        ]
+      ]
     },
     {
       "after": [],
-      "before": ["<C-r>"],
+      "before": [
+        "<C-r>"
+      ],
       "commands": [
         {
           "args": [],
@@ -74,7 +88,7 @@
   "workbench.colorTheme": "Solarized Light",
   "workbench.statusBar.visible": true,
   "vsonline.accountProvider": "Microsoft",
-"cmake.configureOnOpen": false,
+  "cmake.configureOnOpen": false,
   "codespaces.accountProvider": "GitHub",
   "[rust]": {
     "editor.defaultFormatter": "matklad.rust-analyzer"
@@ -106,15 +120,16 @@
   "go.languageServerFlags": [
     "-rpc.trace"
   ],
-"window.titleBarStyle": "custom",
-"jupyter.askForKernelRestart": false,
-"terraform.languageServer": {
-  "external": true,
-  "args": [
-    "serve"
-  ],
-  "maxNumberOfProblems": 100,
-  "trace.server": "off"
-},
-"editor.accessibilitySupport": "off",
+  "window.titleBarStyle": "custom",
+  "jupyter.askForKernelRestart": false,
+  "terraform.languageServer": {
+    "external": true,
+    "args": [
+      "serve"
+    ],
+    "maxNumberOfProblems": 100,
+    "trace.server": "off"
+  },
+  "editor.accessibilitySupport": "off",
+  "workbench.editor.showTabs": true
 }
