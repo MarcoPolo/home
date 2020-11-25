@@ -9,8 +9,11 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
 
-    # nix build --show-trace .#homeManagerConfigurations.fig.activationPackage
+    # nix-shell -I nixpkgs=channel:nixos-20.09 --packages nixFlakes home-manager
+    # nix build --experimental-features 'flakes nix-command' --show-trace .#homeManagerConfigurations.fig.activationPackage
     # result/activate
+    # Or if you already have nixFlakes in nix-env.
+    # nix build .#homeManagerConfigurations.fig.activationPackage && result/activate
     homeManagerConfigurations = {
       fig = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-darwin";

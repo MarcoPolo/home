@@ -7,7 +7,8 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ zola ];
+  # cacert needed so that nix can talk to the cache server
+  home.packages = with pkgs; [ cacert ];
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = { EDITOR = "nvim"; };

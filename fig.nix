@@ -1,6 +1,7 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./marcopolo-github.nix ./common.nix ./darwin-common.nix ];
   home.stateVersion = "20.09";
+  home.packages = with pkgs; [ nixpkgs-fmt nix-index nmap htop cacert hello ];
 
   programs.ssh = {
     enable = true;
