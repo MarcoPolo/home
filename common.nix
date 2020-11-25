@@ -1,42 +1,29 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 let
-  pkgs =
-    import ./nix/nixpkgs.nix { config = config // { allowUnfree = true; }; };
-  secretsPath =
-    /Volumes/Keybase/private/marcopolo/home-manager-secrets/secrets.nix;
-  certPath =
-    "/Volumes/Keybase/private/marcopolo/home-manager-secrets/protonmail-bridge.pem";
   nixCfg =
     if (builtins.pathExists ./config.nix) then import ./config.nix else { };
-in {
+in
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "20.03";
-  home.packages = with pkgs; [ zola lorri ];
+  home.packages = with pkgs; [ zola ];
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = { EDITOR = "nvim"; };
 
-  home.file = if pkgs.stdenv.hostPlatform.isDarwin then {
-    nix-conf = {
-      source = ./mac-nix.conf;
-      target = ".config/nix/nix.conf";
-    };
-    config = {
-      source = ./mac-nixconfig.nix;
-      target = ".config/nixpkgs/config.nix";
-    };
-  } else
-    { };
+  home.file =
+    if pkgs.stdenv.hostPlatform.isDarwin then {
+      nix-conf = {
+        source = ./mac-nix.conf;
+        target = ".config/nix/nix.conf";
+      };
+      config = {
+        source = ./mac-nixconfig.nix;
+        target = ".config/nixpkgs/config.nix";
+      };
+    } else
+      { };
 
   programs.direnv = {
     enable = true;
@@ -76,10 +63,9 @@ in {
       bindkey -M vicmd v edit-command-line
 
       # Setup nix
-      ${if builtins.currentSystem == "x86_64-darwin" then ''
+      if [[ "$OSTYPE" == "darwin"* ]]; then
         . $HOME/.nix-profile/etc/profile.d/nix.sh
-      '' else
-        ""}
+      fi
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
@@ -127,51 +113,6 @@ in {
       }
     ];
   };
-
-  # On one hand it would be nice to have these managed by nix/hm. But on the
-  # other, letting vs code manage it's own config is very useful! I got stuff to do
-  home.activation = if (builtins.currentSystem == "x86_64-darwin") then {
-    linkVSCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-          ${
-            builtins.toPath ./vscode/settings/settings.json
-          } "$HOME/Library/Application Support/Code/User/settings.json" || true
-    '';
-    linkVSCodeRemoteExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-          ${pkgs.vscode-extensions.ms-vscode-remote.remote-ssh}/share/vscode/extensions/ms-vscode-remote.remote-ssh "$HOME/.vscode/extensions/" || true
-    '';
-    linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-          ${
-            builtins.toPath ./vscode/settings/keybindings.json
-          } "$HOME/Library/Application Support/Code/User/keybindings.json" || true
-    '';
-    # Really slow
-    # installVSCodeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    #   $DRY_RUN_CMD cat \
-    #       ${
-    #         builtins.toPath ./vscode/extensions.meta
-    #       } | xargs -I{} code --install-extension {}
-    # '';
-  } else
-    { };
-
-  # programs.neomutt = {
-  #   enable = true;
-  #   vimKeys = true;
-  #   editor = "nvim";
-  #   sidebar = { enable = true; };
-  # };
-  # programs.mbsync.enable = true;
-
-  # accounts.email.maildirBasePath = "Mail";
-  # accounts.email.certificatesFile = certPath;
-
-  # accounts.email.accounts.marcopolo = if (builtins.pathExists secretsPath) then
-  #   (import secretsPath).accounts.email.accounts.marcopolo
-  # else
-  #   { };
 
   programs.neovim = {
     enable = true;

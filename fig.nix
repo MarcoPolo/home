@@ -1,8 +1,9 @@
 { ... }: {
-  imports = [ ./marcpolo-github.nix ./common.nix ];
+  imports = [ ./marcopolo-github.nix ./common.nix ./darwin-common.nix ];
+  home.stateVersion = "20.09";
+
   programs.ssh = {
     enable = true;
-
     matchBlocks = {
       rusty = { hostname = "rusty.marcopolo.io"; };
       "pi4" = {
