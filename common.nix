@@ -30,6 +30,7 @@ in
     enable = true;
     enableZshIntegration = true;
   };
+  programs.direnv.enableNixDirenvIntegration = true;
 
   programs.z-lua = {
     enable = true;
