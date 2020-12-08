@@ -71,6 +71,9 @@ in
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
+      # Radicle
+      export PATH="$HOME/.radicle/bin:$PATH"
     '';
     shellAliases = { vim = "nvim"; };
     plugins = [
