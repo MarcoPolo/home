@@ -9,5 +9,5 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.09";
-  home.packages = with pkgs; [ nix-index htop ];
+  home.packages = with pkgs; [ nix-index htop cacert nixFlakes ];
 }
