@@ -23,6 +23,13 @@
         homeDirectory = "/Users/marcomunizaga";
         username = "marcomunizaga";
       };
+      st-marco1 = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-darwin";
+        configuration = ./marco-st.nix;
+        system = "x86_64-darwin";
+        homeDirectory = "/Users/marco";
+        username = "marco";
+      };
     };
 
   };
