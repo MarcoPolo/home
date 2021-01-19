@@ -1,7 +1,5 @@
-{ pkgs, config, lib, ... }:
+{ extraZsh ? "" }: { pkgs, config, lib, ... }:
 let
-  nixCfg =
-    if (builtins.pathExists ./config.nix) then import ./config.nix else { };
 in
 {
   # Let Home Manager install and manage itself.
@@ -53,11 +51,8 @@ in
     autocd = true;
     defaultKeymap = "viins";
     initExtra = ''
-      # Any extra work stuff
-      ${if builtins.hasAttr "extraWorkZsh" nixCfg then
-        nixCfg.extraWorkZsh
-      else
-        ""}
+      # Any extra stuff
+      ${extraZsh}
 
       # Edit command in vim
       autoload -U edit-command-line
@@ -71,9 +66,6 @@ in
 
       # Better command not found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-
-      # Radicle
-      export PATH="$HOME/.radicle/bin:$PATH"
     '';
     shellAliases = { vim = "nvim"; };
     plugins = [
