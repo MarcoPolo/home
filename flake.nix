@@ -8,7 +8,6 @@
 
 
   outputs = { self, nixpkgs, ... }@inputs: {
-
     # nix-shell -I nixpkgs=channel:nixos-20.09 --packages nixFlakes home-manager
     # nix build --experimental-features 'flakes nix-command' --show-trace .#homeManagerConfigurations.fig.activationPackage
     # result/activate

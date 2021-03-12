@@ -6,10 +6,10 @@
       builtins.toPath ./vscode/settings/settings.json
       } "$HOME/Library/Application Support/Code/User/settings.json" || true
     '';
-    linkVSCodeRemoteExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-          ${pkgs.vscode-extensions.ms-vscode-remote.remote-ssh}/share/vscode/extensions/ms-vscode-remote.remote-ssh "$HOME/.vscode/extensions/" || true
-    '';
+    # linkVSCodeRemoteExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    #   $DRY_RUN_CMD ln -s $VERBOSE_ARG \
+    #       ${pkgs.vscode-extensions.ms-vscode-remote.remote-ssh}/share/vscode/extensions/ms-vscode-remote.remote-ssh "$HOME/.vscode/extensions/" || true
+    # '';
     linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               $DRY_RUN_CMD ln -s $VERBOSE_ARG \
                   ${
