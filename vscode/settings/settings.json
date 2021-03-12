@@ -34,9 +34,9 @@
   "go.formatTool": "goimports",
   "go.useLanguageServer": true,
   "nightswitch.autoSwitch": true,
-  "nightswitch.sunset": "17:00",
+  "nightswitch.sunset": "16:00",
   "jest.autoEnable": false,
-  "nightswitch.sunrise": "07:00",
+  "nightswitch.sunrise": "09:00",
   // "nightswitch.location": "34.052235, -118.243683",
   "nightswitch.dayTheme": "Solarized Light",
   "nightswitch.nightTheme": "Community Material Theme Palenight High Contrast",
@@ -83,13 +83,10 @@
   ],
   "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
   "vsonline.authentication.accountProvider": "Microsoft",
-  "window.zoomLevel": 1,
-  "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Solarized Light",
-  "workbench.statusBar.visible": true,
+  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
   "vsonline.accountProvider": "Microsoft",
   "cmake.configureOnOpen": false,
-  "codespaces.accountProvider": "GitHub",
+  "codespaces.accountProvider": "Uninitialized",
   "[rust]": {
     "editor.defaultFormatter": "matklad.rust-analyzer"
   },
@@ -123,5 +120,8 @@
   "window.titleBarStyle": "custom",
   "jupyter.askForKernelRestart": false,
   "editor.accessibilitySupport": "off",
-  "workbench.editor.showTabs": true
+  "workbench.editor.showTabs": true,
+  "codespaces.enableSuspendOnIdleConnection": false,
+  "codespaces.featureSet": "insiders",
+  "window.zoomLevel": 2
 }
