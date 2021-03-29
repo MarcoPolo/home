@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+let
+  remote-ssh =
+    (pkgs.callPackage (import ./vscode-nix/remote-ssh.nix) { });
+in
+{
   home.activation = {
     linkVSCodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               $DRY_RUN_CMD ln -s $VERBOSE_ARG \
@@ -8,7 +13,7 @@
     '';
     # linkVSCodeRemoteExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     #   $DRY_RUN_CMD ln -s $VERBOSE_ARG \
-    #       ${pkgs.vscode-extensions.ms-vscode-remote.remote-ssh}/share/vscode/extensions/ms-vscode-remote.remote-ssh "$HOME/.vscode/extensions/" || true
+    #       ${remote-ssh}/share/vscode/extensions/ms-vscode-remote.remote-ssh "$HOME/.vscode/extensions/" || true
     # '';
     linkVSCodeKeyBindings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
               $DRY_RUN_CMD ln -s $VERBOSE_ARG \

@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [ ./marcopolo-github.nix (import ./common.nix { }) ./darwin-common.nix ];
   home.stateVersion = "20.09";
-  home.packages = with pkgs; [ nixpkgs-fmt nix-index nmap htop cacert git-crypt ];
+  home.packages = with pkgs; [ nixpkgs-fmt nix-index nmap htop cacert git-crypt watchexec gitAndTools.hub restic ];
 
   programs.ssh = {
     enable = true;
@@ -54,7 +54,7 @@
     };
   };
 
-  programs.vscode.enable = true;
+  # programs.vscode.enable = true;
   programs.vscode.extensions = [
     (pkgs.callPackage (import ./vscode-nix/remote-ssh.nix) { })
   ];

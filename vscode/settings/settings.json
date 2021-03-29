@@ -123,5 +123,5 @@
   "workbench.editor.showTabs": true,
   "codespaces.enableSuspendOnIdleConnection": false,
   "codespaces.featureSet": "insiders",
-  "window.zoomLevel": 2
+  "workbench.activityBar.visible": false
 }
